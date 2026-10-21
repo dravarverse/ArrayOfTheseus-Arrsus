@@ -1,0 +1,6 @@
+build/
+EOF
+a.out
+*.o
+*.out
+main
