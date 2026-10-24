@@ -4,3 +4,7 @@ a.out
 *.o
 *.out
 main
+/build
+*.a
+*.so
+cmake-build-*/

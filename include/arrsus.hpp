@@ -1,5 +1,5 @@
-#ifndef ARRSUS_H
-#define ARRSUS_H
+#ifndef ARRSUS_HPP
+#define ARRSUS_HPP
 
 #include <iostream>
 #include <string>

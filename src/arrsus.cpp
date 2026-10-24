@@ -1,4 +1,4 @@
-#include "arrsus.h"
+#include "arrsus.hpp"
 
 template <typename T>
 Arrsus<T>::Arrsus() : size(0), capacity(0), arr(new T[capacity]{}) {}
