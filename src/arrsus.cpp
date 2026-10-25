@@ -12,8 +12,7 @@ Arrsus<T>::Arrsus(std::initializer_list<T> values) : size(0), capacity(values.si
     for (const T& value : values)
     {
         arr[i] = value;
-        i++;
-        size++;
+        size += i++;
     }
 }
 
@@ -65,7 +64,7 @@ T& Arrsus<T>::operator[](int index)
 {
     if (index >= capacity)
     {
-        throw std::out_of_range("Arrsus index out of size range");
+        throw std::out_of_range("arrsus index out of range");
     }
     else if (index < capacity && index >= size)
     {
@@ -93,7 +92,7 @@ void Arrsus<T>::insert(int index, T data)
 {
     if (index > size)
     {
-        throw std::out_of_range("Index Out of Bounds error");
+        throw std::out_of_range("arrsus index out of range");
         return;
     }
 
@@ -123,12 +122,63 @@ void Arrsus<T>::pop()
 {
     if (size == 0)
     {
-        throw std::out_of_range("pop on empty array.");
+        throw std::out_of_range("pop on empty array");
         return;
     }
 
     arr[size - 1] = T{};
     size--;
+    if (size <= capacity / 2)
+    {
+        int newCapacity = (capacity == 0 ? 1 : capacity / 2);
+        resize(newCapacity);
+        this->capacity = newCapacity;
+    }
+}
+
+template <typename T>
+void Arrsus<T>::erase(int index){
+    if (index >= size)
+    {
+        throw std::out_of_range("Arrsus index out of size range");
+    }
+    
+    T temp[size];
+    for (int i = 0; i < size; i++)
+    {
+        temp[i] = arr[i];
+    }
+    arr[index] = T{};
+    for (int i = index; i < size-1; i++)
+    {
+        arr[i] = temp[i+1];
+    }
+    size--;
+    if (size <= capacity / 2)
+    {
+        int newCapacity = (capacity == 0 ? 1 : capacity / 2);
+        resize(newCapacity);
+        this->capacity = newCapacity;
+    }
+}
+
+template <typename T>
+void Arrsus<T>::erase(int start_index, int end_index){
+    if (start_index >= size)
+    {
+        throw std::out_of_range("arrsus index out of size range");
+    }
+    if (start_index > end_index)
+    {
+        throw std::invalid_argument("start_index must be smaller than end_index");
+    }
+    
+    for (int i = 0; start_index <= end_index; i++)
+    {
+        erase(start_index-i);
+        start_index++;
+    }
+    
     if (size <= capacity / 2)
     {
         int newCapacity = (capacity == 0 ? 1 : capacity / 2);

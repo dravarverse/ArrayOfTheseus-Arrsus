@@ -20,10 +20,13 @@ public:
     Arrsus<T>& operator=(std::initializer_list<T> values);
     Arrsus<T>& operator=(const Arrsus<T>& other);
     T& operator[](int index);
+    
     int getSize();
     void add(T data);
     void insert(int index, T data);
     void pop();
+    void erase(int index);
+    void erase(int start_index, int end_index); 
     void resize(int newCapacity);
     void printArray();
     void clear();
