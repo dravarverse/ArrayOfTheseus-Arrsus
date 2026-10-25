@@ -65,8 +65,7 @@ T& Arrsus<T>::operator[](int index)
 {
     if (index >= capacity)
     {
-        throw std::out_of_range("Index out of size range.");
-        // return;
+        throw std::out_of_range("Arrsus index out of size range");
     }
     else if (index < capacity && index >= size)
     {
@@ -92,7 +91,7 @@ void Arrsus<T>::add(T data)
 template <typename T>
 void Arrsus<T>::insert(int index, T data)
 {
-    if (index >= size)
+    if (index > size)
     {
         throw std::out_of_range("Index Out of Bounds error");
         return;
