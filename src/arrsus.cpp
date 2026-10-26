@@ -12,8 +12,9 @@ Arrsus<T>::Arrsus(std::initializer_list<T> values) : size(0), capacity(values.si
     for (const T& value : values)
     {
         arr[i] = value;
-        size += i++;
+        i++;
     }
+    size = i;
 }
 
 template <typename T>
@@ -142,16 +143,9 @@ void Arrsus<T>::erase(int index){
     {
         throw std::out_of_range("Arrsus index out of size range");
     }
-    
-    T temp[size];
-    for (int i = 0; i < size; i++)
-    {
-        temp[i] = arr[i];
-    }
-    arr[index] = T{};
     for (int i = index; i < size-1; i++)
     {
-        arr[i] = temp[i+1];
+        arr[i] = arr[i+1];
     }
     size--;
     if (size <= capacity / 2)
